@@ -75,6 +75,11 @@ class Main(tk.Frame):
         [self.tree.delete(i) for i in self.tree.get_children()] 
         [self.tree.insert('','end',values=row) for row in self.db.c.fetchall()]
     
+    def view_objects_old(self):
+        self.db.c.execute("SELECT *FROM book WHERE date < '1980'")  
+        [self.tree.delete(i) for i in self.tree.get_children()]  
+        [self.tree.insert('','end',values=row) for row in self.db.c.fetchall()]
+
     def view_objects_delete(self):
         self.db.c.execute("SELECT * FROM book")  
         [self.tree.delete(i) for i in self.tree.get_children()] 
